@@ -1,13 +1,20 @@
 ---
-- name: Run educational task
-  hosts: _dev
+- name: Install nginx and php
+  hosts: type_web:type_php
   gather_facts: true
   become: yes
   tasks:
-    - name: Provision projeccts role
+    - name: Including roles
       include_role:
-        name: "{{ role }}"
-      with_items: "{{ roles }}"
-      loop_control:
-        loop_var: role
-      when: ('_dev' in group_names)
+        name: nginx
+        name: awslogs
+        name: php-fpm
+        name: phpmyadmin
+- name: Intall DB
+  hosts: type_db
+  gather_facts: true
+  become: yes
+  tasks:
+    - name: Including roles
+      include_role:
+        name: mariadb

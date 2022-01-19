@@ -1,17 +1,11 @@
 ---
 # tasks file for phpmyadmin
-- name: Start mariadb
-  service:
-    name: mariadb
-    enabled: true
-    state: started
-
 - name: Create phpmyadmin directory
   file:
     path: /usr/share/nginx/html/phpmyadmin/
     state: directory
 
-- name: Setup phpmyadmin
+- name: Install phpmyadmin
   ansible.builtin.unarchive:
     src: https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
     dest: "{{ dest_folder }}"

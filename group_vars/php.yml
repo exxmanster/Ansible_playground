@@ -1,4 +1,4 @@
-phpmyadmin_group: _phpmyadmin
+phpmyadmin_group: php
 roles:
   - nginx
   - php-fpm

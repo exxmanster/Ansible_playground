@@ -1,4 +1,4 @@
-nginx_php_fpm_awslogs_group: _webserver
+nginx_php_fpm_awslogs_group: web
 roles:
   - nginx
   - php-fpm
