@@ -1,0 +1,3 @@
+---
+# defaults file for phpmyadmin
+dest_folder: /usr/share/nginx/html/phpmyadmin
