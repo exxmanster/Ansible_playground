@@ -5,11 +5,11 @@
   become: yes
   tasks:
     - name: Including roles
-      include_role:
-        name: awslogs
-        name: php-fpm
-        name: phpmyadmin
-        name: nginx
+       roles:
+        - awslogs
+        - php-fpm
+        - phpmyadmin
+        - nginx
 - name: Intall DB
   hosts: type_db
   gather_facts: true
