@@ -6,10 +6,10 @@
   tasks:
     - name: Including roles
       include_role:
-        name: nginx
         name: awslogs
         name: php-fpm
         name: phpmyadmin
+        name: nginx
 - name: Intall DB
   hosts: type_db
   gather_facts: true
