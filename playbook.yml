@@ -1,20 +1,11 @@
 ---
-- name: Install nginx and php
-  hosts: type_web:type_php
-  gather_facts: true
-  become: yes
-  tasks:
-    - name: Including roles
-       roles:
-        - awslogs
-        - php-fpm
-        - phpmyadmin
-        - nginx
-- name: Intall DB
-  hosts: type_db
-  gather_facts: true
-  become: yes
-  tasks:
-    - name: Including roles
-      include_role:
-        name: mariadb
+- hosts: type_web:type_php
+  become: true
+  roles:
+    - nginx
+    - phpmyadmin
+    - php-fpm
+- hosts: type_db
+  become: true
+  roles:
+     - mariadb   
