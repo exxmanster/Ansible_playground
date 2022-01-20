@@ -5,7 +5,9 @@
     - nginx
     - phpmyadmin
     - php-fpm
+    - awslogs
 - hosts: type_db
   become: true
   roles:
-     - mariadb   
+     - mariadb
+     - awslogs   
