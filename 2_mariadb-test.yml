@@ -1,6 +1,8 @@
- name: db test test playbook
-  hosts: type_db
-  vars:
+ 
+
+ - name: db test test playbook
+   hosts: type_db
+   vars:
     mariadb_mirror: 'mariadb.mirror.nucleus.be/yum'
     mariadb_bind_address: '0.0.0.0'
     mariadb_root_password: 'atOrryag&'
