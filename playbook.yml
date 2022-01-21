@@ -10,4 +10,3 @@
   become: true
   roles:
      - mariadb
-     - awslogs   
