@@ -1,16 +1,36 @@
 ---
-- name: Install mariadb
-  yum:
-    name:
-      - mariadb
-      - mariadb-server
-    state: latest
+- name: MariaDB
+  hosts: type_db
+  gather_facts: true
+  become: true
+  tasks:
+    - name: install mariadb
+      yum:
+        name:
+          - mariadb-server
+          - python3-PyMySQL
+        state: latest
+    - name: start mariadb
+      service:
+        name: mariadb
+        enabled: true
+        state: started
+    - name: mysql_root_password
+      mysql_user:
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        user: root
+        check_implicit_admin: true
+        password: "{{ mysql_root_password }}"
+        host: localhost
+    - name: create DB user
+      mysql_user:
+        name: admin
+        password: "{{ mysql_user_password }}"
+        priv: '*.*:ALL'
+        host: '%'
+        state: present
 
-- name: Start mariadb
-  service:
-    name: mariadb
-    enabled: true
-    state: started
-
+    
   notify:
     - Restart mariadb

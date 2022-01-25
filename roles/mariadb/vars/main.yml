@@ -1,2 +1,4 @@
 ---
 # vars file for phpmyadmin
+ mysql_root_password: "SupeR-$tR0Ng_PAS$W0rd"
+ mysql_user_password: "StronG_PaS$W0rD"

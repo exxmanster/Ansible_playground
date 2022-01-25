@@ -11,6 +11,17 @@
     dest: "{{ dest_folder }}"
     extra_opts: [--strip-components=1]
     remote_src: yes
+  
+
+- name: replace phpmyadmin config file
+  template:
+    src: phpmya_conf.j2
+    dest: /usr/share/nginx/html/phpmyadmin/config.inc.php
+    owner: root
+    group: root
+    mode: 0644
+  
+  
   notify:
     - Restart nginx
     - Restart php-fpm
