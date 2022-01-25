@@ -36,4 +36,4 @@
         priv: 'app2db.*:ALL'
         host: '10.0.%'
   roles:
-    - role: bertvv.mariadb
+    - role: mariadb-test
