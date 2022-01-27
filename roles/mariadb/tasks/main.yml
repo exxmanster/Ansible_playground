@@ -1,8 +1,5 @@
 ---
 - name: MariaDB
-  hosts: type_db
-  gather_facts: true
-  become: true
   tasks:
     - name: install mariadb
       yum:

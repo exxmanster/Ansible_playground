@@ -1,12 +1,14 @@
 ---
-- hosts: type_web:type_php
+- name: Install NGINX and PHP  
+  hosts: type_web:type_php
   become: true
   roles:
     - nginx
     - phpmyadmin
     - php-fpm
     - awslogs
-- hosts: type_db
+- name: Install DB 
+  hosts: type_db
   become: true
   roles:
-    - mariadb 
+    - mariadb
