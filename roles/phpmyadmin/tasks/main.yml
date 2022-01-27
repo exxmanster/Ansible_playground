@@ -11,7 +11,19 @@
     dest: "{{ dest_folder }}"
     extra_opts: [--strip-components=1]
     remote_src: yes
-  
+
+- name: Get DB IP
+  hosts: type_db
+  gather_facts: true
+  vars:
+   db_ipaddr: "{{ansible_facts.eth0.ipv4.address }}"
+
+  tasks:
+   - name: Print message
+     debug:
+       msg: "IP address is {{ db_ipaddr }}"
+
+
 
 - name: replace phpmyadmin config file
   template:
