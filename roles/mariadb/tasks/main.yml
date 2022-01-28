@@ -14,7 +14,7 @@
     enabled: true
     state: started
 
-- name: Apply /root/.my.cnf
+- name: Creating my.cnf
   template:
     src: templates/mycnf.j2
     dest: /root/.my.cnf
