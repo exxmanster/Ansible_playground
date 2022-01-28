@@ -1,33 +1,47 @@
 ---
-- name: MariaDB
-  tasks:
-    - name: install mariadb
-      yum:
-        name:
-          - mariadb-server
-          - python3-PyMySQL
-        state: latest
-    - name: start mariadb
-      service:
-        name: mariadb
-        enabled: true
-        state: started
-    - name: mysql_root_password
-      mysql_user:
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
-        user: root
-        check_implicit_admin: true
-        password: "{{ mysql_root_password }}"
-        host: localhost
-    - name: create DB user
-      mysql_user:
-        name: admin
-        password: "{{ mysql_user_password }}"
-        priv: '*.*:ALL'
-        host: '%'
-        state: present
 
-    
+- name: Install mariadb
+  yum:
+    name:
+      - mariadb
+      - mariadb-server
+      - MySQL-python
+    state: latest
+
+- name: Start mariadb
+  service:
+    name: mariadb
+    enabled: true
+    state: started
+
+- name: Change root password
+  mysql_user:
+    name: root
+    password: '{{ db_root_pass }}'
+    host_all: yes
+  notify: Restart mariadb
+
+- name: Apply /root/.my.cnf
+  template:
+    src: templates/mycnf.j2
+    dest: /root/.my.cnf
+    mode: 0600
+    owner: root
+    group: root
+  notify: Restart mariadb
+
+- name: Remove anon users
+  mysql_user:
+    name: ''
+    host_all: yes
+  notify: Restart mariadb
+
+- name: Create DB user
+  mysql_user:
+    name: admin
+    password: "{{ mysql_user_pass }}"
+    priv: '*.*:ALL'
+    host: '%'
+    state: present
   notify:
     - Restart mariadb
