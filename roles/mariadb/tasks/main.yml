@@ -14,13 +14,6 @@
     enabled: true
     state: started
 
-- name: Change root password
-  mysql_user:
-    name: root
-    password: '{{ db_root_pass }}'
-    host_all: yes
-  notify: Restart mariadb
-
 - name: Apply /root/.my.cnf
   template:
     src: templates/mycnf.j2
@@ -28,6 +21,13 @@
     mode: 0600
     owner: root
     group: root
+  notify: Restart mariadb
+
+- name: Change root password
+  mysql_user:
+    name: root
+    password: '{{ db_root_pass }}'
+    host_all: yes
   notify: Restart mariadb
 
 - name: Remove anon users
