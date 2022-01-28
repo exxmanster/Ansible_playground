@@ -1,14 +1,13 @@
 ---
-- name: Install NGINX and PHP  
-  hosts: type_web:type_php
-  become: true
-  roles:
-    - nginx
-    - phpmyadmin
-    - php-fpm
-    - awslogs
-- name: Install DB 
-  hosts: type_db
-  become: true
-  roles:
-    - mariadb
+- name: Provisioning 
+  hosts: all
+  gather_facts: true
+  become: yes
+  tasks:
+    - name: Provision projects role
+      include_role:
+        name: "{{ role }}"
+      with_items: "{{ roles }}"
+      loop_control:
+        loop_var: role
+      when: ('type_' in group_names)
