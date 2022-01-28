@@ -19,3 +19,5 @@ keyed_groups:
     key: tags['env']
   - prefix: type
     key: tags['type']
+  - prefix: project
+    key: tags['project']   
