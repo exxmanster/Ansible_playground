@@ -1,5 +1,4 @@
 ---
-# handlers file for phpmyadmin
 - name: Restart mariadb
   service:
     name: mariadb
