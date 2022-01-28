@@ -39,7 +39,7 @@
 - name: Create DB user
   mysql_user:
     name: admin
-    password: "{{ mysql_user_pass }}"
+    password: "{{ db_user_pass }}"
     priv: '*.*:ALL'
     host: '%'
     state: present
