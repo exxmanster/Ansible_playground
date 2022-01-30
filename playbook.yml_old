@@ -1,9 +1,0 @@
-vim d
-    - phpmyadmin
-    - php-fpm
-    - awslogs
-- name: Install DB 
-  hosts: type_db
-  become: true
-  roles:
-    - mariadb

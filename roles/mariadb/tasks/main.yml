@@ -26,8 +26,13 @@
 - name: Change root password
   mysql_user:
     name: root
-    password: '{{ db_root_pass }}'
+    password: "{{ db_root_pass }}"
     host_all: yes
+    host: localhost
+    login_unix_socket: /var/lib/mysql/mysql.sock
+    priv: '*.*:ALL,GRANT'
+    check_implicit_admin: true 
+    state: present
   notify: Restart mariadb
 
 - name: Remove anon users
