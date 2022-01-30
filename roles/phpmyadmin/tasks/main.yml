@@ -5,6 +5,16 @@
     path: /usr/share/nginx/html/phpmyadmin/
     state: directory
 
+- name: Configure phpmyadmin config file
+  template:
+    src: phpmyaconf.j2
+    dest: /usr/share/nginx/html/phpmyadmin/config.inc.php
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart nginx
+
 - name: Install phpmyadmin
   ansible.builtin.unarchive:
     src: https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz

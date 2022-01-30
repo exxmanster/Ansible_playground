@@ -5,7 +5,7 @@
     name: awslogs
     state: present
 
-- name: Start awslogs service
+- name: starting awslogs service
   service:
     name: awslogsd
     state: started
@@ -13,7 +13,7 @@
 
 - name: Configure AWS CloudWatch Logs Agent Region
   template:
-    src: awscli.conf.j2
+    src: awscli.j2
     dest: /etc/awslogs/awscli.conf
     owner: root
     group: root
